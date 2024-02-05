@@ -17,4 +17,4 @@ Open [http://localhost:3000](http://localhost:5173) with your browser to see the
 
 ## Deploy on Vercel
 
-Check out this website [Live App](https://.vercel.app/) for experience.
+Check out this website [Live App](https://the-mirrar-weather-app.vercel.app/) for experience.
