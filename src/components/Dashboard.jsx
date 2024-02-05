@@ -4,6 +4,7 @@ import { FtoC, UNIX_to_Timestamp, timeStampToDate } from "../_helpers/math";
 import { useState } from "react";
 import { convertDataUnit, weatherIcon } from "../_helpers/fetch";
 import TimeCard from "./TimeCard";
+import ForcastCard from "./ForcastCard";
 
 const Dashboard = () => {
   const { weather } = useWeather();
@@ -13,18 +14,31 @@ const Dashboard = () => {
 
   if (weather) {
     if (weather.list) {
+      //converting temp unit of whole unit on unit-toggle
       const list =
         unit[0] === "F"
           ? weather.list
           : weather.list.map((item) => {
               return { ...item, temps: convertDataUnit(FtoC, item.temps) };
             });
+
+      // same day different time weather.
       const differentTimeWeather = list.slice(0, 10).filter((item) => {
         const theDate = new Date(UNIX_to_Timestamp(list[0].dt)).getDate();
         const itemDate = new Date(UNIX_to_Timestamp(item.dt)).getDate();
         return itemDate === theDate;
       });
-      console.log(differentTimeWeather.length);
+
+      //next 5 days forcast
+      const forcastWeather = list.filter((item, i) => {
+        const theDate = new Date(
+          UNIX_to_Timestamp(list[!i ? 0 : i - 1].dt)
+        ).getDate();
+        const itemDate = new Date(UNIX_to_Timestamp(item.dt)).getDate();
+        return itemDate !== theDate;
+      });
+
+      console.log(differentTimeWeather.length, forcastWeather.length);
       return (
         <div className="dashboard">
           <header>
@@ -100,7 +114,23 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="next5"></div>
+            <div className="next5">
+              <h2>Next 5 days</h2>
+              <div className="cards">
+                { forcastWeather.map((item,i)=>{
+                   return <ForcastCard
+                   key={i}
+                   desc={item.weather.description}
+                   timestamp={item.dt}
+                   icon={item.weather.icon}
+                   minTemp={item.temps.temp_min}
+                   maxTemp={item.temps.temp_max}
+                   windspeed={item.wind.speed}
+                 />
+                })
+    }
+              </div>
+            </div>
           </div>
         </div>
       );

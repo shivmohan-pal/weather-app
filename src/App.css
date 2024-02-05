@@ -1,8 +1,10 @@
 .App {
-  flex:auto;
+  position: relative;
+  flex: auto;
   display: flex;
   flex-direction: column;
 }
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -19,7 +21,9 @@
 }
 
 .navbar {
-  position: relative;
+  position: sticky;
+  top: 0;
+  /* width: 100%; */
   padding: 0.5em;
   text-align: center;
 
@@ -48,24 +52,38 @@
   }
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
 
 .dashboard {
-   color:var(--sky-950);
+  color: var(--sky-950);
+  position: relative;
+
   & header {
+    position: sticky;
+    top: 0;
+    /* width: 100%; */
     background-color: var(--sky-300);
     padding: 0.5em;
     display: flex;
     justify-content: space-between;
 
+    z-index: 1;
+
     & h1 {
       margin: 0;
     }
+
     & span {
-    color:var(--sky-900);
+      color: var(--sky-900);
     }
   }
 
   & .main {
+    position: relative;
+    z-index: 0;
+
     & .recent {
       display: flex;
       padding: 1.5em 0 0;
@@ -89,7 +107,7 @@
           }
 
           & .desc {
-            color:var(--sky-800);
+            color: var(--sky-800);
             font-size: 1.25em;
             text-transform: capitalize;
           }
@@ -118,8 +136,9 @@
           & span:nth-child(1) {
             font-size: 1.25em;
           }
-          & span:nth-child(2){
-            color:var(--sky-800);
+
+          & span:nth-child(2) {
+            color: var(--sky-800);
           }
         }
       }
@@ -128,23 +147,70 @@
 }
 
 .different-time {
-  padding:0.5em;
+  padding: 0.5em;
+
   & h2 {
     font-weight: 500;
-    color:var(--sky-800);
-    margin:0.25em 0;
+    color: var(--sky-800);
+    margin: 0.25em 0;
   }
- & .cards {
-   display: flex;
-   gap: 0.5em;
 
-   overflow: auto;
+  & .cards {
+    display: flex;
+    gap: 0.5em;
 
-   &::-webkit-scrollbar {
-        display: none;
-        width: 0;
-   }
- }
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+      width: 0;
+    }
+  }
+}
+
+.next5 {
+  padding: 0.5em;
+
+  & h2 {
+    font-weight: 500;
+    color: var(--sky-800);
+    margin: 0.25em 0;
+  }
+
+  & .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    flex-wrap: wrap;
+  }
+}
+
+.forcast-card {
+  display: flex;
+  gap: 0.5em;
+  align-items: end;
+  justify-content: space-around;
+
+  padding: 0.5rem;
+  border-radius: 0.25em;
+  background-color: var(--sky-300);
+
+  &>div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    align-items: center;
+
+    & span:nth-child(1) {
+      font-size: 1.25em;
+      justify-self: center;
+    }
+
+    & span:nth-child(2) {
+      justify-self: flex-end;
+      color: var(--sky-800);
+    }
+  }
 }
 
 .time-card {
@@ -155,7 +221,7 @@
 
   padding: 0.5rem 1rem;
   border-radius: 0.25em;
-  background-color: var(--sky-400);
+  background-color: var(--sky-300);
 
   & span {
     font-size: 1.25em;
@@ -226,7 +292,7 @@
   .main {
     & .recent {
       flex-direction: column;
-      padding-top:1em;
+      padding-top: 1em;
       gap: 0.5em;
 
       & .detail {}
