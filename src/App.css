@@ -1,42 +1,241 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.App {
+  flex:auto;
+  display: flex;
+  flex-direction: column;
 }
-
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.navbar {
+  position: relative;
+  padding: 0.5em;
+  text-align: center;
+
+  background-color: var(--sky-400);
+}
+
+.search-bar {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--sky-100);
+  padding: 0.25em 0.5em;
+  border-radius: 1em;
+
+  & input {
+    background-color: transparent;
+    border: none;
+    font-size: 1.25em;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & button {
+    /* font-size: 1.25em; */
+  }
+}
+
+
+.dashboard {
+   color:var(--sky-950);
+  & header {
+    background-color: var(--sky-300);
+    padding: 0.5em;
+    display: flex;
+    justify-content: space-between;
+
+    & h1 {
+      margin: 0;
+    }
+    & span {
+    color:var(--sky-900);
+    }
+  }
+
+  & .main {
+    & .recent {
+      display: flex;
+      padding: 1.5em 0 0;
+
+      & .detail {
+        display: flex;
+        flex-basis: 50%;
+        gap: 0.5em;
+        align-items: end;
+        justify-content: space-around;
+        padding: 1em 0;
+
+        & .temp-desc {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25em;
+          align-items: center;
+
+          & .temp {
+            font-size: 4em;
+          }
+
+          & .desc {
+            color:var(--sky-800);
+            font-size: 1.25em;
+            text-transform: capitalize;
+          }
+        }
+
+      }
+
+      & .other {
+        flex-basis: 50%;
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        column-gap: 0.5em;
+        row-gap: 1em;
+        border-left: 2px solid var(--sky-300);
+
+        padding: 1em 0;
+
+        &>div {
+          display: flex;
+          flex-direction: column;
+          gap: 0.125em;
+          align-items: center;
+
+          & span:nth-child(1) {
+            font-size: 1.25em;
+          }
+          & span:nth-child(2){
+            color:var(--sky-800);
+          }
+        }
+      }
+    }
+  }
+}
+
+.different-time {
+  padding:0.5em;
+  & h2 {
+    font-weight: 500;
+    color:var(--sky-800);
+    margin:0.25em 0;
+  }
+ & .cards {
+   display: flex;
+   gap: 0.5em;
+
+   overflow: auto;
+
+   &::-webkit-scrollbar {
+        display: none;
+        width: 0;
+   }
+ }
+}
+
+.time-card {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25em;
+  align-items: center;
+
+  padding: 0.5rem 1rem;
+  border-radius: 0.25em;
+  background-color: var(--sky-400);
+
+  & span {
+    font-size: 1.25em;
+  }
+}
+
+.unit {
+  padding: 0.5em;
+}
+
+.unit * {
+  box-sizing: border-box;
+}
+
+.unit-toggle {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em;
+  border-radius: 1em;
+  overflow: hidden;
+  border: 2px solid var(--sky-700);
+
+  &:focus {
+    outline: none;
+  }
+
+  & span {
+    padding: 0.25em 0.5em;
+    display: inline-block;
+  }
+
+  & .overlay {
+    position: absolute;
+    padding: 0.25em;
+    background-color: var(--sky-800);
+    inset: 0.25em;
+    width: 50%;
+    height: 80%;
+    opacity: 0.5;
+    border-radius: 0.75em;
+    transition: transform 0.2s ease;
+  }
+
+  &.Fahrenheit {
+    & .overlay {
+      transform: translateX(calc(50% + 0.625em));
+    }
+  }
+
+  &.Celcius {
+    & .overlay {
+      transform: translateX(0%);
+    }
+  }
 }
 
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media screen and (max-width:700px) {
+  .main {
+    & .recent {
+      flex-direction: column;
+      padding-top:1em;
+      gap: 0.5em;
+
+      & .detail {}
+
+      & .other {
+        border-left: none;
+        border-top: 2px solid var(--sky-300);
+        border-bottom: 2px solid var(--sky-300);
+      }
+    }
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

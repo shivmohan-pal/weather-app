@@ -1,11 +1,5 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,7 +18,8 @@
   --sky-900: #0c4a6e;
   --sky-950: #082f49;
 }
-
+* {
+}
 a {
   font-weight: 500;
   color: #646cff;
@@ -38,25 +33,31 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  flex-direction: column;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100svh;
+}
+#root {
+  flex:auto;
+  display: flex;
+  flex-direction: column;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+main {
+/* padding:0.5em;   */
+flex:auto;
+background-color: var(--sky-200);
 }
 
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  padding: 0.6em;
+  /* font-size: 1em; */
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
+  background-color: transparent;
   transition: border-color 0.25s;
 }
 
@@ -83,3 +84,9 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+@media screen and (max-width:280px) {
+ body {
+  font-size: 90%;
+ } 
+}
