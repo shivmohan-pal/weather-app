@@ -10,7 +10,7 @@ const Dashboard = () => {
   const { weather } = useWeather();
   const [unit, setUnit] = useState("Fahrenheit");
 
-  console.log(weather);
+  // console.log(weather);
 
   if (weather) {
     if (weather.list) {
@@ -38,7 +38,6 @@ const Dashboard = () => {
         return itemDate !== theDate;
       });
 
-      console.log(differentTimeWeather.length, forcastWeather.length);
       return (
         <div className="dashboard">
           <header>
