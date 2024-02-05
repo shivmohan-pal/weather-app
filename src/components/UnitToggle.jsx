@@ -1,4 +1,5 @@
 
+//Unit Toggel
 const UnitToggle = ({ onToggle,unitName }) => {
   const handleToggle = () => {
     onToggle((prev) => (prev === "Fahrenheit" ? "Celcius" : "Fahrenheit"));// Fahrenheit or Celcius
